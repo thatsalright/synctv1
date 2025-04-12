@@ -3,6 +3,8 @@
 package com.synctv.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.EqualsAndHashCode;
 import lombok.Data;
 import jakarta.persistence.*;
 
@@ -18,6 +20,7 @@ public class User {
     private String sessionId;
 
     @JsonIgnore
+    @EqualsAndHashCode.Exclude  // Add this annotation
     @ManyToOne(fetch = FetchType.LAZY)
     private Room room;
 

@@ -5,6 +5,7 @@ import com.synctv.model.Room;
 import com.synctv.model.User;
 import com.synctv.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class RoomService {
         return roomRepository.save(room);
     }
 
+    @Transactional
     public Room findRoomById(String id) {
         return roomRepository.findById(id).orElse(null);
     }
@@ -29,6 +31,7 @@ public class RoomService {
         return roomRepository.findAll();
     }
 
+    @Transactional
     public Room addUserToRoom(String roomId, User user) {
         Room room = findRoomById(roomId);
         if (room != null) {
@@ -38,6 +41,7 @@ public class RoomService {
         return null;
     }
 
+    @Transactional
     public Room removeUserFromRoom(String roomId, User user) {
         Room room = findRoomById(roomId);
         if (room != null) {
@@ -51,6 +55,7 @@ public class RoomService {
         return null;
     }
 
+    @Transactional
     public Room updateRoomPlaybackStatus(String roomId, boolean isPlaying, long currentTime) {
         Room room = findRoomById(roomId);
         if (room != null) {
